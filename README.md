@@ -62,50 +62,43 @@ India's economy is deeply rooted in agriculture, and predicting crop yields is e
 
 ---
 
-## 📁 Project Structure
+## 📁 Full Project Structure
 
 ```
 ├── code/
 │   ├── crop_recom_saf_code/
 │   │   ├── assets/
+│   │   ├── LICENSE
 │   │   ├── plantuml-imp/
 │   │   ├── py-imp/
-│   │   │   ├── code/
-│   │   │   ├── models/
-│   │   │   ├── pump/
 │   │   ├── r-imp/
 │   │   └── scratch/
 │   └── crop_yield_code/
 │       ├── code/
 │       ├── dl_code/
 │       ├── dataset/
-│       └── notebooks/
+│       └── various_notebooks_and_models.ipynb
 ├── dataset/
+│   ├── CM1.csv
+│   └── desharnais.csv
 ├── documentation/
 │   ├── Minor_Project_report.pdf
-│   ├── summary.png, force.png, decision.png, waterfall.png (Latex_minor/)
+│   ├── Latex_minor/ (SHAP visualizations)
+│   └── other_docs_and_ppts
 ├── researchpapaers/
 │   ├── SHAP_Paper.pdf
 │   ├── LIME_Paper.pdf
-│   └── Other Related Work
-└── README.md
+│   └── other_reference_papers.pdf
+├── README.md
 ```
 
-```
-crop-yield-shap/
-│
-├── data/                     # CSV dataset containing crop yield records (cleaned & encoded)
-├── models/                   # Trained models (Pickle/Joblib format)
-├── notebooks/                # Jupyter notebooks for EDA, training, and SHAP analysis
-├── shap_plots/               # SHAP visualization outputs (summary, force, etc.)
-├── src/
-│   ├── preprocessing.py      # Data loading and preprocessing
-│   ├── train_model.py        # Model training scripts
-│   ├── shap_analysis.py      # SHAP value computation and plotting
-├── requirements.txt          # Python dependencies
-├── README.md                 # This file
-└── main.py                   # Run the full pipeline
-```
+This structure includes all the submodules such as:
+
+- `py-imp` and `r-imp`: Python and R implementations
+- `scratch`: experiments and raw notebook drafts
+- `crop_yield_code`: full ML pipeline with SHAP, preprocessing, and multiple models
+- `documentation`: report, visualizations, LaTeX files, and presentation
+- `researchpapers`: referenced academic papers and related studies
 
 ---
 
@@ -373,14 +366,33 @@ To understand how predictions are made, SHAP was used to visualize and rank the 
 - **Season**: Seasons such as **Kharif** and **Rabi** influence irrigation availability and crop growth.
 - **Region/District Variations**: Specific crop-region interactions (e.g., **Urad in TIRUNELVELI**) had strong local influence.
 
-#### 🖼️ Visual Outputs Included
+### 📈 Visual Interpretations
 
-- **Confusion Matrices** for classification comparison (converted for interpretability in regression via binning).
-- **Feature Importance Plots**: SHAP bar plots to rank features by mean absolute SHAP values.
-- **Force and Waterfall Plots**: Per-instance explanations showing how individual features influenced the model.
-- **Decision Plots**: Show how the cumulative effect of features leads to final predictions.
+#### 🔷 SHAP Waterfall Plot
 
-> These results not only highlight model performance but also guide agronomists and policymakers to understand _why_ a certain recommendation or yield estimate was made.
+![Waterfall Plot](documentation/Latex_minor/waterfall.png)
+
+Displays the cumulative effect of top features on a **single prediction**. Shows how base value shifts to final output.
+
+#### 🔷 SHAP Summary Plot
+
+![Summary Plot](documentation/Latex_minor/summary.png)
+
+Ranks features by **mean SHAP value** across all predictions.
+
+#### 🔷 SHAP Force Plot
+
+![Force Plot](documentation/Latex_minor/force.png)
+
+Shows how each feature **pushes** a prediction higher or lower for one data instance.
+
+#### 🔷 SHAP Decision Plot
+
+![Decision Plot](documentation/Latex_minor/decision.png)
+
+Demonstrates **step-wise contribution** of features along decision paths of ensemble models.
+
+> These visualizations not only support explainability but also enhance model trust among domain experts and stakeholders.
 
 ---
 
