@@ -1,0 +1,9 @@
+pandas==1.5.3
+numpy==1.21.6
+scikit-learn==1.0.2
+xgboost==1.6.2
+shap==0.41.0
+matplotlib==3.5.3
+seaborn==0.11.2
+jupyterlab==3.4.4
+notebook==6.4.12
